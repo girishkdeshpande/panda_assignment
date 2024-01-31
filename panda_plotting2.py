@@ -1,6 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-# import numpy as np
+import numpy as np
 
 telcom = pd.read_csv('D:/data/telcom.csv')
 
@@ -18,7 +18,9 @@ def state_wise_distribution():
     # Show state wise distribution
     # Scatter chart
     state_wise_distr = telcom['state'].value_counts()
-    print('State wise distribution :\n', state_wise_distr.head())
+    print('State wise distribution :\n', state_wise_distr)
+
+
 
 
 def call_distribution_churn_wise():
@@ -60,21 +62,32 @@ def call_distribution_churn_wise():
     churn_t_data = [total_morning_calls_t, total_evening_calls_t, total_night_calls_t]
     # print('Total Churn True call wise data', churn_t_data)
 
-    fig, (ax1, ax2) = plt.subplots(nrows=2, ncols=1)
-
+    fig, (ax1, ax2) = plt.subplots(nrows=2, ncols=1, sharex=True)
+    # width = 0.25
     slices1 = [churn_f_data[0], churn_f_data[1], churn_f_data[2]]
-    labels1 = ['Morning', 'Evening', 'Night']
-
     slices2 = [churn_t_data[0], churn_t_data[1], churn_t_data[2]]
+    labels1 = ['Morning', 'Evening', 'Night']
+    # x_indexes = np.arange(len(labels1))
 
+    ax1.plot(labels1, slices1, color='k', label='Churn = False')
     ax1.set_title('Churn wise distribution of the calls for morning, evening & night calls')
-    ax1.pie(slices1, shadow=True, labels=labels1, autopct='%1.1f%%', wedgeprops={'edgecolor': 'black'})
-    ax1.legend(loc='upper left', title='Churn - False')
+    ax1.set_ylabel('Total calls')
+    ax1.legend(loc='upper right')
 
-    ax2.pie(slices2, shadow=True, labels=labels1, autopct='%1.1f%%', wedgeprops={'edgecolor': 'black'})
-    ax2.legend(loc='lower right', title='Churn - True')
+    ax2.plot(labels1, slices2, color='b', label='Churn = True')
+    ax2.set_xlabel('Call Time Period')
+    ax2.set_ylabel('Total calls')
+    ax2.legend(loc='upper right')
 
-    plt.tight_layout()
+    # plt.bar(x_indexes, slices1, width=width, color='k')
+    # plt.bar(x_indexes+width, slices2, width=width, color='b')
+    #
+    # plt.title('Churn wise distribution of the calls for morning, evening & night calls')
+    # plt.xlabel('Call Time Period')
+    # plt.ylabel('Total calls')
+    # plt.xticks(ticks=x_indexes, labels=labels1)
+    # plt.tight_layout()
+    # plt.legend(loc='upper right')
     plt.show()
 
 
@@ -113,6 +126,17 @@ def top_5_states_account_length_wise():
     # length_wise_top_5 = telcom[['state', 'account length']]
     # length_wise = length_wise_top_5['account length'].value_counts(ascending=False)
     # print('length wise:\n', length_wise.head())
+
+    x_axis = state_wise_top_5.values[0:5, 0]
+    bins = state_wise_top_5.values[0:5, 1]
+
+    plt.hist(x_axis, bins=bins, edgecolor='k', log=True)
+    plt.title('Top 5 states account length wise')
+    plt.xlabel('States')
+    plt.ylabel('Account Length')
+    plt.tight_layout()
+    # plt.legend()
+    plt.show()
 
 
 def total_call_charges():

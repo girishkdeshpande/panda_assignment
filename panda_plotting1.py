@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
 
 employee = pd.read_csv('D:/data/employee.csv')
 
@@ -36,8 +37,7 @@ def visual_response(value):
             slices = emp_attrition.values
             labels = emp_attrition.index
             explode = [0, 0.1]
-            plt.pie(slices, labels=labels, explode=explode, shadow=True,
-                    autopct='%1.1f%%', wedgeprops={'edgecolor': 'black'})
+            plt.pie(slices, labels=labels, explode=explode, shadow=True, autopct='%1.1f%%', wedgeprops={'edgecolor': 'black'})
             plt.title(' Employee Attrition')
             plt.legend()
             plt.tight_layout()
@@ -47,8 +47,7 @@ def visual_response(value):
             emp_job_satisfaction = employee['JobSatisfaction'].value_counts()
             slices = emp_job_satisfaction.values
             labels = emp_job_satisfaction.index
-            plt.pie(slices, labels=labels, shadow=True,
-                        autopct='%1.1f%%', wedgeprops={'edgecolor': 'black'})
+            plt.pie(slices, labels=labels, shadow=True, autopct='%1.1f%%', wedgeprops={'edgecolor': 'black'})
             plt.title('Job Satisfaction Distribution')
             plt.tight_layout()
             plt.legend()
