@@ -2,24 +2,42 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-telcom = pd.read_csv('D:/data/telcom.csv')
+telcom = pd.read_csv('D:/data/telcom1.csv')
 
 
 def data_check_for_null():
     # Load the data and check if it consist of any missing data or not?
     # Stack chart
-    if telcom.all:
-        print('Dataframe consist null columns/rows')
-    else:
-        print('Dataframe does not consist null columns/rows')
+    plt.style.use('classic')
+
+    missing_values = pd.DataFrame(telcom.head(), columns=['state', 'account length', 'area code', 'phone number', 'international plan'])
+    missing_values.isnull().any()
+
+    cols = [col for col in missing_values.columns if missing_values[col].isnull().any()]
+    missing_count = missing_values.isna().sum()
+    plt.bar(missing_count.index, missing_count.values, color='r')
+    plt.ylim([0, 5])
+    plt.title('Missing data')
+    plt.xlabel('Columns')
+    plt.ylabel('Count of missing values')
+    plt.tight_layout()
+    plt.show()
 
 
 def state_wise_distribution():
     # Show state wise distribution
     # Scatter chart
-    state_wise_distr = telcom['state'].value_counts()
-    print('State wise distribution :\n', state_wise_distr)
+    plt.style.use('classic')
 
+    state_wise_distr = telcom['state'].value_counts()
+    # print('State wise distribution :\n', state_wise_distr)
+
+    plt.stem(state_wise_distr.index, state_wise_distr.values)
+    plt.title('State Wise Distribution')
+    plt.xlabel('State')
+    plt.ylabel('Distribution')
+    plt.tight_layout()
+    plt.show()
 
 
 
@@ -62,8 +80,8 @@ def call_distribution_churn_wise():
     churn_t_data = [total_morning_calls_t, total_evening_calls_t, total_night_calls_t]
     # print('Total Churn True call wise data', churn_t_data)
 
+    # fig, ax = plt.subplots(sharex=True)
     fig, (ax1, ax2) = plt.subplots(nrows=2, ncols=1, sharex=True)
-    # width = 0.25
     slices1 = [churn_f_data[0], churn_f_data[1], churn_f_data[2]]
     slices2 = [churn_t_data[0], churn_t_data[1], churn_t_data[2]]
     labels1 = ['Morning', 'Evening', 'Night']
@@ -79,14 +97,15 @@ def call_distribution_churn_wise():
     ax2.set_ylabel('Total calls')
     ax2.legend(loc='upper right')
 
-    # plt.bar(x_indexes, slices1, width=width, color='k')
-    # plt.bar(x_indexes+width, slices2, width=width, color='b')
+    # plt.plot(labels1, slices1, color='k')
+    # plt.plot(labels1, slices2, color='b')
     #
     # plt.title('Churn wise distribution of the calls for morning, evening & night calls')
     # plt.xlabel('Call Time Period')
     # plt.ylabel('Total calls')
+    # plt.ylim([20000, 300000])
     # plt.xticks(ticks=x_indexes, labels=labels1)
-    # plt.tight_layout()
+    plt.tight_layout()
     # plt.legend(loc='upper right')
     plt.show()
 
@@ -120,22 +139,24 @@ def voicemail_count_by_churn():
 def top_5_states_account_length_wise():
     # Top 5 states account length wise
     # stem chart
+    plt.style.use('ggplot')
+
     state_wise_top_5 = telcom[['state', 'account length']].sort_values(by='account length', ascending=False)
-    print('Top 5 states account length wise :\n', state_wise_top_5.values[0:5, 0], state_wise_top_5.values[0:5, 1])
+    # print('Top 5 states account length wise :\n', state_wise_top_5.values[0:5, 0], state_wise_top_5.values[0:5, 1])
 
     # length_wise_top_5 = telcom[['state', 'account length']]
-    # length_wise = length_wise_top_5['account length'].value_counts(ascending=False)
-    # print('length wise:\n', length_wise.head())
+    # length_wise = length_wise_top_5.groupby('state')['account length'].value_counts(ascending=True)
+    # print('length wise:\n', length_wise)
+    # # print('Length wise values:\n', length_wise.values)
 
     x_axis = state_wise_top_5.values[0:5, 0]
-    bins = state_wise_top_5.values[0:5, 1]
+    y_axis = state_wise_top_5.values[0:5, 1]
 
-    plt.hist(x_axis, bins=bins, edgecolor='k', log=True)
+    plt.stem(x_axis, y_axis)
     plt.title('Top 5 states account length wise')
     plt.xlabel('States')
     plt.ylabel('Account Length')
     plt.tight_layout()
-    # plt.legend()
     plt.show()
 
 
