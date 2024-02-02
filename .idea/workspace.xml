@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8ceb9660-d4d0-4311-a0c3-a2942eee0dbe" name="Changes" comment="3rd task completed">
+    <list default="true" id="8ceb9660-d4d0-4311-a0c3-a2942eee0dbe" name="Changes" comment="All task complete">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/panda_plotting2.py" beforeDir="false" afterPath="$PROJECT_DIR$/panda_plotting2.py" afterDir="false" />
     </list>
@@ -159,7 +159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706729470803</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="All task complete">
+      <created>1706782590160</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1706782590160</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -176,6 +183,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first push" />
     <MESSAGE value="3rd task completed" />
-    <option name="LAST_COMMIT_MESSAGE" value="3rd task completed" />
+    <MESSAGE value="All task complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="All task complete" />
   </component>
 </project>
