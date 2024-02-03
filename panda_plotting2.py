@@ -20,7 +20,7 @@ def data_check_for_null():
     width = 0.5
     plt.barh(y_indexes, missing_count.values, color='r', label='Values missing')
     plt.barh(y_indexes+width, not_missing_count.values, color='b', label='Values not missing')
-    plt.xlim([0, 10])
+    # plt.xlim([0, 10])
     plt.title('Missing data')
     plt.xlabel('Count of missing values')
     plt.ylabel('Columns')
