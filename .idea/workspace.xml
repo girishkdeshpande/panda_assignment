@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8ceb9660-d4d0-4311-a0c3-a2942eee0dbe" name="Changes" comment="new file for data processing added">
-      <change afterPath="$PROJECT_DIR$/data_processing.py" afterDir="false" />
+    <list default="true" id="8ceb9660-d4d0-4311-a0c3-a2942eee0dbe" name="Changes" comment="file data processing updated">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_processing.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_processing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/panda_data_processing.py" beforeDir="false" afterPath="$PROJECT_DIR$/panda_data_processing.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -225,7 +225,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706994260437</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="file data processing updated">
+      <created>1707222620004</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1707222620004</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -245,6 +252,7 @@
     <MESSAGE value="All task complete" />
     <MESSAGE value="corrections done" />
     <MESSAGE value="new file for data processing added" />
-    <option name="LAST_COMMIT_MESSAGE" value="new file for data processing added" />
+    <MESSAGE value="file data processing updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="file data processing updated" />
   </component>
 </project>

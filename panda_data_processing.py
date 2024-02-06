@@ -1,11 +1,11 @@
 import pandas as pd
-import glob, ast, re
+import glob, re
 
 
 def file_list():
     bot = {}
     count = 0
-    total_files = glob.iglob('D:/data/**/*.log', recursive=True)
+    total_files = glob.iglob('D:/data/indeed_test/*.log', recursive=True)
     for files in total_files:
         count += 1
         log_file = open(files, 'r', encoding='utf8')
@@ -20,12 +20,12 @@ def file_list():
                     bot[key] = []
                 bot[key].append(value)
 
-    print(count)
+    # print(count)
     return bot
 
 
 def to_dataframe(new_bot):
-    df = pd.DataFrame.from_dict(new_bot)
+    df = pd.DataFrame(new_bot)
     return df
 
 
@@ -83,6 +83,8 @@ if __name__ == '__main__':
 #     data_list.append(data_dict)
 # df = pd.DataFrame(data_list)
 # print(df)
+        # pattern = re.compile('([^{]*?)(?=\})')
+        # matches = pattern.search(file_lines)
 
 '''
 'downloader/request_bytes',

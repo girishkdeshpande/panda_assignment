@@ -1,17 +1,40 @@
 import pandas as pd
-import glob, re, ast, json, numpy as np
+import glob, re
 
 
-def read_txt():
+def string_read():
+    bot = {}
+    not_in_file = []
+    count = 0
+    total_files = glob.iglob('D:/data/zippia/*.log', recursive=True)
+    for files in total_files:
+        count += 1
+        log_file = open(files, 'r', encoding='utf8')
+        content = log_file.readlines()
+        search_str = ['BOT_NAME', 'LOG_FILE']
+        pattern = '[{?,()%&$#@''!~]'
+        for line in content:
+            if any(word in line for word in search_str):
+                new_line = re.sub(pattern, '', line)
+                key, value = map(str.strip, new_line.split(':'))
+                if key not in bot:
+                    bot[key] = []
+                bot[key].append(value)
+
+    print(count)
+    return bot
+
+
+def data_read():
     json_data = {}
+    not_in_file = []
     count = 0
     all_files = glob.iglob('D:/data/**/*.log', recursive=True)
     for files in all_files:
         count += 1
-        file_read = open(files, 'r', encoding='utf8')
-        file_lines = file_read.read()
-        # pattern = re.compile('([^{]*?)(?=\})')
-        # matches = pattern.search(file_lines)
+        pattern = '[{?,%&$#@!~' ']'
+        log_file = open(files, 'r', encoding='utf8')
+        file_lines = log_file.read()
         start_str = 'Dumping Scrapy stats:'
         end_str = 'Spider closed'
         start_index = file_lines.find(start_str)
@@ -26,23 +49,26 @@ def read_txt():
                 in_between_data = data_between_index[start_ind + len(start_pos):end_ind].strip()
                 in_between_data = ''.join(list(in_between_data)).split('\n')
                 for line in in_between_data:
-                    key, val = line.split(':')
+                    new_line = re.sub(pattern, '', line)
+                    key, val = map(str.strip, new_line.split(':'))
                     if key not in json_data:
                         json_data[key] = []
                     json_data[key].append(val)
+        else:
+            not_in_file.append(files)
 
     print(count)
-    return json_data
-
-
-def json_to_df(into_json):
-    df = pd.DataFrame.from_dict(into_json, orient='index')
-    df = df.transpose()
-    return df
+    return json_data, not_in_file
 
 
 if __name__ == '__main__':
-    data = read_txt()
-    # str_to_json = data_to_str(data)
-    to_df = json_to_df(data)
-    print(to_df)
+    str_obj = string_read()
+    # data_obj, file_obj = data_read()
+    # print(data_obj)
+    # str_obj.update(data_obj)
+    # club_dict = str_obj | data_obj
+    df = pd.DataFrame.from_dict(str_obj)
+    print(df)
+    # df = df.transpose()
+    # df.to_csv(r'C:\Users\girish.deshpande\Desktop\secondcsv.csv', index=False)
+
