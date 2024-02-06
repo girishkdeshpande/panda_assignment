@@ -1,43 +1,64 @@
 import pandas as pd
-import glob, ast
-import json, re
+import glob, ast, re
 
 
-def read_txt():
-    log_file = open('D:/data/indeed_test/5b387050885711eda7780225a990f764.log', 'r', encoding='utf8')
-    content = log_file.readlines()
-    return content
-
-
-def fetch_data(content):
-    search_str = ['BOT_NAME', 'LOG_FILE']
-    pattern = '[{?,(/)%&$#@!~]'
+def file_list():
     bot = {}
-    new_bot = {}
-    for line in content:
-        if any(word in line for word in search_str):
-            new_line = re.sub(pattern, '', line)
-            key, value = map(str.strip, new_line.split(':'))
-            bot[key] = value
-            for key, val in bot.items():
-                new_key = key.replace("'", "")
-                new_val = val.replace("'", "")
-                new_bot[new_key] = new_val
-    return new_bot
+    count = 0
+    total_files = glob.iglob('D:/data/**/*.log', recursive=True)
+    for files in total_files:
+        count += 1
+        log_file = open(files, 'r', encoding='utf8')
+        content = log_file.readlines()
+        search_str = ['BOT_NAME', 'LOG_FILE']
+        pattern = '[{?,()%&$#@!~]'
+        for line in content:
+            if any(word in line for word in search_str):
+                new_line = re.sub(pattern, '', line)
+                key, value = map(str.strip, new_line.split(':'))
+                if key not in bot:
+                    bot[key] = []
+                bot[key].append(value)
+
+    print(count)
+    return bot
 
 
 def to_dataframe(new_bot):
-    df = pd.DataFrame.from_dict(new_bot, orient='index')
+    df = pd.DataFrame.from_dict(new_bot)
     return df
 
 
 if __name__ == '__main__':
-    file_content = read_txt()
-    to_df = fetch_data(file_content)
-    to_csv = to_dataframe(to_df)
-    print(to_csv.index)
-    print(to_csv.values)
+    to_df = file_list()
+    df_to_csv = to_dataframe(to_df)
+    print(df_to_csv)
+    # df_to_csv.to_csv(r'C:\Users\girish.deshpande\Desktop\firstcsv.csv')
 
+
+# def read_txt():
+#     log_file = open('D:/data/indeed_test/5b387050885711eda7780225a990f764.log', 'r', encoding='utf8')
+#     content = log_file.readlines()
+#     return content
+#
+#
+# def fetch_data(content):
+#     search_str = ['BOT_NAME', 'LOG_FILE']
+#     pattern = '[{?,(/)%&$#@!~]'
+#     bot = {}
+#     new_bot = {}
+#     for line in content:
+#         if any(word in line for word in search_str):
+#             new_line = re.sub(pattern, '', line)
+#             key, value = map(str.strip, new_line.split(':'))
+#             bot[key] = value
+#             for key, val in bot.items():
+#                 new_key = key.replace("'", "")
+#                 new_val = val.replace("'", "")
+#                 new_bot[new_key] = new_val
+#     return new_bot
+
+    # df_to_csv.to_csv(r'C:\Users\girish.deshpande\Desktop\datatemp.csv')
 # match = re.(search_str, line)
 # if match:
 #     # new_line = re.sub(pattern, '', line)
@@ -63,6 +84,38 @@ if __name__ == '__main__':
 # df = pd.DataFrame(data_list)
 # print(df)
 
-
-
+'''
+'downloader/request_bytes',
+                      'downloader/request_count',
+                      'downloader/request_method_count/GET',
+                      'downloader/response_bytes',
+                      'downloader/response_count',
+                      'downloader/response_status_count/200',
+                      'downloader/response_status_count/301',
+                      'downloader/response_status_count/302',
+                      'dupefilter/filtered',
+                      'elapsed_time_seconds',
+                      'finish_reason',
+                      'finish_time',
+                      'httpcompression/response_bytes',
+                      'httpcompression/response_count',
+                      'log_count/DEBUG',
+                      'log_count/ERROR',
+                      'log_count/INFO',
+                      'log_count/WARNING',
+                      'memusage/max',
+                      'memusage/startup',
+                      'request_depth_max',
+                      'response_received_count',
+                      'scheduler/dequeued',
+                      'scheduler/dequeued/memory',
+                      'scheduler/enqueued',
+                      'scheduler/enqueued/memory',
+                      'start_time', 'zyte_smartproxy/delay/reset_backoff',
+                      'zyte_smartproxy/request',
+                      'zyte_smartproxy/request/method/GET',
+                      'zyte_smartproxy/response',
+                      'zyte_smartproxy/response/status/200',
+                      'zyte_smartproxy/response/status/301',
+                      'zyte_smartproxy/response/status/302']'''
 
