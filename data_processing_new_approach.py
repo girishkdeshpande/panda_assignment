@@ -1,41 +1,55 @@
 import pandas as pd
 import glob, re
-import os
 from datetime import datetime as dt
+import logging
+logging.basicConfig(filename="D:/panda_assignment/data_processing.log", format='%(asctime)s-%(message)s', filemode='w')
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 
 
+# Function to read txt log files & fetching required data
 def read_fetch_data():
     search_str1 = ['BOT_NAME', 'LOG_FILE']
-    # search_str2 = 'LOG_FILE'
     search_str3 = 'Dumping Scrapy stats:'
     search_str4 = 'Spider closed'
     pattern = '[{?,()%&$#@"!~]'
     new_line = ''
+
     string_presence, string_absence = [], []
     stat_presence,  stat_absence = [], []
     counter = 0
 
     # Reading files from folder
-    all_files = glob.iglob('D:/data/indeed/*.log', recursive=True)
+    all_files = glob.iglob('D:/data/**/*.log', recursive=True)
     for file in all_files:
+        string_present = False
+        logger.info(f'Reading file - {file}')
         log_file = open(file, 'r', encoding='utf8')
         content = log_file.readlines()
 
         # Searching string 'BOT_NAME' & 'LOG_FILE' in file
+        logger.info(f'Searching for string - {search_str1}')
         for line in content:
             if any(word in line for word in search_str1):
                 new_line = re.sub(pattern, '', line)
+                logger.info(f'line value is - {new_line}')
                 string_presence.append(new_line)
+                string_present = True
+                logger.info(f'line value appended')
 
-        if new_line == '':
+        # Checking if string not present
+        logger.info(f'Checking for strings if not present- {search_str1}')
+        if not string_present:
+            logger.info('Appending file which has no strings')
             string_absence.append(file)
 
-        print(f'Data not present in file - {string_absence}')
-
         # Searching stat data in file
+        logger.info(f'Searching stats {search_str3} & {search_str4} ')
         start_line = next((i for i, line in enumerate(content, start=1) if search_str3 in line), None)
         end_line = next((i for i, line in enumerate(content, start=1) if search_str4 in line), None)
 
+        # Checking if stats present or not
+        logger.info(f'Checking for stats {search_str3} & {search_str4} if present in file')
         if start_line is not None and end_line is not None:
             data_between_strings = content[start_line:end_line-1]
             result = ''.join(data_between_strings).strip()
@@ -46,10 +60,10 @@ def read_fetch_data():
         counter += 1
 
     print(counter)
-    # print(f'Data not present in file - {stat_absence}')
     return string_presence, string_absence, stat_presence, stat_absence
 
 
+# Function to parse date
 def date_parser(val):
     val = val.strip('datetime.').replace('(', '"').replace(')', '"').replace('"', '')
     new_val = re.split(',', val)
@@ -59,6 +73,7 @@ def date_parser(val):
     return formatted_date
 
 
+# Function to convert fetched data into json format
 def file_data_processing(string_presence_data, string_absence_data, stat_presence_data, stat_absence_data):
 
     str_ab_data = string_absence_data
@@ -68,6 +83,8 @@ def file_data_processing(string_presence_data, string_absence_data, stat_presenc
     bot = {}
     json_data = {}
 
+    # Converting string data into json
+    logger.info('Converting fetched string data into json')
     if string_presence_data:
         for string in string_presence_data:
             key, value = map(str.strip, string.split(':'))
@@ -77,14 +94,13 @@ def file_data_processing(string_presence_data, string_absence_data, stat_presenc
                 bot[key] = []
             bot[key].append(value)
 
-    # if string_absence_data:
-    #     for item in string_absence_data:
-    #         print(item)
-
+    # Converting stat data into json
+    logger.info('Converting stat data into json')
     if stat_presence_data:
         for stat in stat_presence_data:
             new_line = re.sub(pattern, '', stat).replace("'", '').replace(' ', '')
             fixed_line = ''.join(list(new_line)).split('\n')
+
             for line in fixed_line:
                 key, val = map(str.strip, line.split(':'))
                 val = val.strip(',').replace("'", '')
@@ -97,10 +113,7 @@ def file_data_processing(string_presence_data, string_absence_data, stat_presenc
                     json_data[key] = []
                 json_data[key].append(val)
 
-    # if stat_absence_data:
-    #     for item in stat_absence_data:
-    #         print(item)
-
+    logger.info('Returning json data for df')
     return bot, str_ab_data, json_data, stat_ab_data
 
 
@@ -113,12 +126,14 @@ if __name__ == '__main__':
     print(df)
     # df.to_csv(r'C:\Users\girish.deshpande\Desktop\fixedcsv.csv', index=False)
 
+    print('String BOT_NAME & LOG_FILE not found in below files:')
     for str_item in str_data_a:
-        print('String BOT_NAME & LOG_FILE not found in below files:\n')
+        logger.info(f'Strings absent in file - {str_item}')
         print(str_item)
 
+    print('\nStats not found in below files:')
     for stat_item in stat_data_a:
-        print('Stats not found in below files:\n')
+        logger.info(f'Stats absent in file - {stat_item}')
         print(stat_item)
 
 
