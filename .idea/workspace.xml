@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8ceb9660-d4d0-4311-a0c3-a2942eee0dbe" name="Changes" comment="approach changed for task">
+    <list default="true" id="8ceb9660-d4d0-4311-a0c3-a2942eee0dbe" name="Changes" comment="log file added">
+      <change afterPath="$PROJECT_DIR$/data_new_approach.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data_processing.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dump.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/r&amp;d.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_processing_new_approach.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_processing.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_processing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_processing_new_approach.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_processing_new_approach.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,19 +28,43 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2bPZunnPqlzH6AfpG9Vkvd8jpBR" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/school_management&quot;
   }
 }</component>
-  <component name="RunManager" selected="Python.data_processing_new_approach (1)">
+  <component name="RunManager" selected="Python.data_new_approach">
+    <configuration name="data_new_approach" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="panda_assignment" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_new_approach.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="data_processing" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="panda_assignment" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -142,34 +170,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="panda_plotting2 (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="panda_assignment" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/panda_plotting2.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.data_new_approach" />
         <item itemvalue="Python.data_processing_new_approach (1)" />
-        <item itemvalue="Python.data_processing_new_approach" />
         <item itemvalue="Python.data_processing" />
+        <item itemvalue="Python.data_processing_new_approach" />
         <item itemvalue="Python.panda_data_processing" />
-        <item itemvalue="Python.panda_plotting2 (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -245,7 +252,14 @@
       <option name="project" value="LOCAL" />
       <updated>1707402624868</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="log file added">
+      <created>1707422295562</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1707422295562</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -260,6 +274,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="first push" />
     <MESSAGE value="3rd task completed" />
     <MESSAGE value="All task complete" />
@@ -267,6 +282,7 @@
     <MESSAGE value="file data processing updated" />
     <MESSAGE value="corrections done" />
     <MESSAGE value="approach changed for task" />
-    <option name="LAST_COMMIT_MESSAGE" value="approach changed for task" />
+    <MESSAGE value="log file added" />
+    <option name="LAST_COMMIT_MESSAGE" value="log file added" />
   </component>
 </project>

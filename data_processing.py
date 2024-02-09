@@ -7,7 +7,7 @@ def string_read():
     bot = {}
     not_in_file = []
     count = 0
-    total_files = glob.iglob('D:/data/**/*.log', recursive=True)
+    total_files = glob.iglob('D:/data/indeed_test/5b387050885711eda7780225a990f764.log', recursive=True)
     for files in total_files:
         count += 1
         log_file = open(files, 'r', encoding='utf8')
@@ -29,7 +29,7 @@ def string_read():
 
 def date_parser(val):
     # pattern = r'[datetime.)' '("]'
-    val = val.strip('datetime.').replace('(', '"').replace(')', '"').replace(' ', ''). replace('"', '')
+    val = val.strip('datetime.').replace('(', '"').replace(')', '"').replace(' ', '').replace('"', '')
     new_val = re.split(',', val)
     date_components = [int(component) if component.isdigit() else 0 for component in new_val[:-1]]
     date_object = dt(*date_components)
@@ -41,7 +41,7 @@ def data_read():
     json_data = {}
     not_in_file = []
     count = 0
-    all_files = glob.iglob('D:/data/**/*.log', recursive=True)
+    all_files = glob.iglob('D:/data/indeed_test/5b387050885711eda7780225a990f764.log', recursive=True)
 
     for files in all_files:
         count += 1
@@ -66,6 +66,7 @@ def data_read():
 
             if start_ind != -1 and end_ind != -1:
                 in_between_data = data_between_index[start_ind + len(start_pos):end_ind].strip()
+                print(type(in_between_data))
                 in_between_data = ''.join(list(in_between_data)).split('\n')
 
                 for line in in_between_data:
@@ -92,11 +93,11 @@ if __name__ == '__main__':
     str_obj = string_read()
     data_obj = data_read()
     # print(data_obj)
-    str_obj.update(data_obj)
+    # str_obj.update(data_obj)
     # club_dict = str_obj | data_obj
-    df = pd.DataFrame.from_dict(str_obj, orient='index')
+    df = pd.DataFrame.from_dict(data_obj, orient='index')
     df = df.transpose()
-    # print(df)
+    print(df)
     # df["'finish_time'"] = pd.to_datetime(df["'finish_time'"], format="mixed")
-    df.to_csv(r'C:\Users\girish.deshpande\Desktop\first5csv.csv', index=False)
+    # df.to_csv(r'C:\Users\girish.deshpande\Desktop\first5csv.csv', index=False)
 
