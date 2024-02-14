@@ -38,6 +38,29 @@ def read_fetch_data():
         log_file = open(file, 'r', encoding='utf8')
         content = log_file.readlines()
 
+        # Searching string 'BOT_NAME' & 'LOG_FILE' in file
+        logger.info(f'Searching for string - {search_str1}')
+        for line in content:
+            if any(word in line for word in search_str1):
+                new_line = re.sub(pattern, '', line)
+                logger.info(f'line value is - {new_line}')
+                string_present = True
+                # string_presence.append(new_line)
+                key, value = map(str.strip, new_line.split(':'))
+                key = key.replace("'", '').replace(',', '')
+                value = value.replace("'", '').replace(',', '')
+                logger.info(f'key - {key}')
+
+                if key not in bot:
+                    bot[key] = []
+                bot[key].append(value)
+
+        # Checking if string not present
+        logger.info(f'Checking for strings if not present- {search_str1}')
+        if not string_present:
+            logger.info('Appending file which has no strings')
+            string_absence.append(file)
+
         # Searching stat data in file
         logger.info(f'Searching stats {search_str3} & {search_str4} ')
         start_line = next((i for i, line in enumerate(content, start=1) if search_str3 in line), None)
@@ -66,34 +89,12 @@ def read_fetch_data():
         else:
             stat_absence.append(file)
 
-        # Searching string 'BOT_NAME' & 'LOG_FILE' in file
-        logger.info(f'Searching for string - {search_str1}')
-        for line in content:
-            if any(word in line for word in search_str1):
-                new_line = re.sub(pattern, '', line)
-                logger.info(f'line value is - {new_line}')
-                string_present = True
-                # string_presence.append(new_line)
-                key, value = map(str.strip, new_line.split(':'))
-                key = key.replace("'", '')
-                value = value.replace("'", '')
-                logger.info(f'key - {key}')
 
-                if key not in bot:
-                    bot[key] = []
-                bot[key].append(value)
-
-        # Checking if string not present
-        logger.info(f'Checking for strings if not present- {search_str1}')
-        if not string_present:
-            logger.info('Appending file which has no strings')
-            string_absence.append(file)
-
-        json_data.update(bot)
+        bot.update(json_data)
         counter += 1
 
     print(counter)
-    return json_data, string_absence, stat_absence
+    return bot, string_absence, stat_absence
 
 '''
 # Function to convert fetched data into json format
@@ -148,9 +149,10 @@ if __name__ == '__main__':
     # str_p.update(stat_p)
     df = pd.DataFrame.from_dict(str_p, orient='index')
     df = df.transpose()
+    df[['f_date', 'f-time']] = df['finish_time'].str.split(' ', expand=True)
+    df[['s_date', 's_time']] = df['start_time'].str.split(' ', expand=True)
     print(df)
-    print(df['BOT_NAME'])
-    # df.to_csv(r'C:\Users\girish.deshpande\Desktop\fixedcsv.csv', index=False)
+    df.to_csv(r'C:\Users\girish.deshpande\Desktop\datetimecsv.csv', index=False)
 
     print('String BOT_NAME & LOG_FILE not found in below files:')
     for str_item in str_a:
