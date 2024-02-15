@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8ceb9660-d4d0-4311-a0c3-a2942eee0dbe" name="Changes" comment="aws_boto file added">
-      <change afterPath="$PROJECT_DIR$/mongodb.py" afterDir="false" />
+    <list default="true" id="8ceb9660-d4d0-4311-a0c3-a2942eee0dbe" name="Changes" comment="mongodb task file added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws_boto.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/beautiful_scraping.py" beforeDir="false" afterPath="$PROJECT_DIR$/beautiful_scraping.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mongodb.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_html.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +42,7 @@
     &quot;last_opened_file_path&quot;: &quot;D:/school_management&quot;
   }
 }</component>
-  <component name="RunManager" selected="Python.mongodb">
+  <component name="RunManager" selected="Python.beautiful_scraping (1)">
     <configuration name="aws_boto" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="panda_assignment" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -53,6 +56,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/aws_boto.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="beautiful_scraping (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="panda_assignment" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/beautiful_scraping.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -95,27 +119,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_new_approach.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="data_processing_new_approach (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="panda_assignment" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_processing_new_approach.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -168,11 +171,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.beautiful_scraping (1)" />
         <item itemvalue="Python.mongodb" />
         <item itemvalue="Python.aws_boto" />
         <item itemvalue="Python.beautiful_scraping" />
         <item itemvalue="Python.data_new_approach" />
-        <item itemvalue="Python.data_processing_new_approach (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -276,7 +279,14 @@
       <option name="project" value="LOCAL" />
       <updated>1707909084753</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="mongodb task file added">
+      <created>1707917058091</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1707917058091</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -303,6 +313,7 @@
     <MESSAGE value="new approached added" />
     <MESSAGE value="scraping task file added" />
     <MESSAGE value="aws_boto file added" />
-    <option name="LAST_COMMIT_MESSAGE" value="aws_boto file added" />
+    <MESSAGE value="mongodb task file added" />
+    <option name="LAST_COMMIT_MESSAGE" value="mongodb task file added" />
   </component>
 </project>

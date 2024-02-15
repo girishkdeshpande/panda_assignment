@@ -34,7 +34,9 @@ def get_data(content_data):
     tag_data = []
     quotes = content_data.find_all('div', class_='quote')
     for quote in quotes:
-        url_data['Quote'].append(quote.text)
+        actual_quote = quote.find('span', class_='text').text
+        clean_quote = actual_quote.replace('"', '')
+        url_data['Quote'].append(clean_quote)
 
         author = quote.find('small', class_='author')
         url_data['Author'].append(author.string)
@@ -60,7 +62,7 @@ def get_data(content_data):
         df = pd.DataFrame.from_dict(url_data, orient='index')
         df = df.transpose()
         print(df)
-        print(df['Author_link'])
+        # df.to_csv('D:/panda_assignment/beautiful.csv')
 
 
 if __name__ == '__main__':
